@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="application/javascript">
+$(function(){
+  
+//alert(readCookie('uid'));
+    
+  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/test.php?jsoncallback=?";
+  $.getJSON( flickerAPI, {
+    tags: "mount rainier",
+    tagmode: "any",
+    format: "json"
+  })
+  .done(function( data ) {
+  
+  //alert(data.items.length);
+    $.each( data.items, function( i, item ) {
+     alert(item.description);
+	 //alert(i);
+	//$('#res').append(item.description);
+    });
+  });
+});
+//$('.cat_id').click(function(){
+//  var id=this.attr('id');
+//  alert(id);
+//  
+//  });  
+</script>
+<title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+</html>
