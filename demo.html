@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>jQuery TextFX - A jQuery Text Animation Engine</title><style type="text/css">body{margin:0;padding:0;color:#333}#effectTwo{display:none}</style><link rel="stylesheet" type="text/css" href="demo_data/cj-text-fx.css"><script src="demo_data/jquery-1.js" type="text/javascript"></script><script type="text/javascript">jQuery.noConflict();</script><script src="demo_data/jquery.js" type="text/javascript"></script><script src="demo_data/cj-text-fx.js" type="text/javascript"></script><script type="text/javascript">var isOn=0,sets,fx,toAnimate="#effect",settings={animation:8,animationType:"in",backwards:!1,easing:"easeOutQuint",speed:1E3,sequenceDelay:100,startDelay:0,offsetX:100,offsetY:50,onComplete:fireThis,restoreHTML:!0};jQuery(document).ready(function(){fx=jQuery("#effect");jQuery.cjTextFx(settings);jQuery.cjTextFx.animate(toAnimate)}); function fireThis(){if(isOn!==13){isOn<13?isOn++:isOn=0;switch(isOn){case 1:sets={animationType:"out",restoreHTML:!1};break;case 2:fx.html("My Thinking Cap");sets={animation:11};break;case 3:sets={animation:11,animationType:"out",restoreHTML:!1};break;case 4:fx.html("My Thinking Cap");sets={animation:1};break;case 5:sets={animation:1,animationType:"out",restoreHTML:!1};break;case 6:fx.html("My Thinking Cap");sets={animation:6,backwards:!0};break;case 7:sets={animation:4,animationType:"out", backwards:!0,restoreHTML:!1};break;case 8:fx.html("My Thinking Cap");sets={animation:2,easing:"easeOutBounce"};break;case 9:sets={animation:2,animationType:"out",speed:500,easing:"easeInBack",restoreHTML:!1};break;case 10:fx.html("My Thinking Cap"),sets={animation:14,startDelay:1E3,linked:!0,hyperlink:"generator.html",color:"#0000FF",linkTarget:"_self",onComplete:null}}jQuery.cjTextFx.animate(toAnimate,sets)}};</script>
+</head>
+<body>
+<div style="margin-left: -140px;" id="container">
+	<div id="text-fx"><div style="color: rgb(0, 0, 0); height: 48px; visibility: visible; display: block;" id="effect">
+		<span style="position: absolute; left: -8px; top: 2px; opacity: 0;">M</span>
+		<span style="position: absolute; left: 63px; top: -29px; opacity: 0;">y</span>
+		<span style="position: absolute; left: 125px; top: -11px; opacity: 0;"></span>
+		<span style="position: absolute; left: -51px; top: 24px; opacity: 0;">T</span>
+		<span style="position: absolute; left: 157px; top: -3px; opacity: 0;">h</span>
+		<span style="position: absolute; left: 7px; top: 37px; opacity: 0;">i</span>
+		<span style="position: absolute; left: 189px; top: -3px; opacity: 0;">n</span>
+		<span style="position: absolute; left: 116px; top: -13px; opacity: 0;">k</span>
+		<span style="position: absolute; left: 73px; top: 25px; opacity: 0;">i</span>
+		<span style="position: absolute; left: 59.0213px; top: 33.9909px; opacity: 0.000267785;">n</span>
+		<span style="position: absolute; left: 73.743px; top: 27.7538px; opacity: 0.00879344;">g</span>
+		<span style="position: absolute; left: 176px; top: -14px; opacity: 0;"></span>
+		<span style="position: absolute; left: 294px; top: -6px; opacity: 0;">C</span>
+		<span style="position: absolute; left: 127px; top: 47px; opacity: 0;">a</span>
+		<span style="position: absolute; left: 201px; top: 13px; opacity: 0;">p</span></div></div>
+</div>
+</body>
+</html>

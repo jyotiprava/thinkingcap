@@ -449,6 +449,9 @@ function hidePopUpMessage() {
 <script type="application/javascript">
 $(function(){
 var que_id='';
+var que1='';
+var que2='';
+var que3='';
 //alert(readCookie('uid'));
 //alert(readCookie('cat_id'));
 var ld=readCookie('cat_id');
@@ -476,19 +479,19 @@ var uid=readCookie('uid');
 	}
 	if(ld.question1)
 	{
-	var que1=ld.question1;
+	que1=ld.question1;
 	alert(que1);
 	$('#q1').append(decodeURIComponent(que1.replace(/\+/g, ' ')));
 	}
 	if(ld.question2)
 	{
-	var que2=ld.question2;
+	que2=ld.question2;
 	alert(que2);
 	$('#q2').append(decodeURIComponent(que2.replace(/\+/g, ' ')));
 	}
 	if(ld.question3)
 	{
-	var que3=ld.question3;
+	que3=ld.question3;
 	
 	
 	$('#q3').append(decodeURIComponent(que3.replace(/\+/g, ' ')));
