@@ -3,7 +3,7 @@ body {
   font-size: 100%;
   margin: 0px;
   padding: 0px;
-  background:#65C4E9;
+  background:url(images/backimg1.png) repeat;
   background:#30B9E2;
 }
 #bubble{width:100%; float:left; height:400px; position:relative;}
