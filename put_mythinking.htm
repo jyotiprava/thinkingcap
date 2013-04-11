@@ -479,7 +479,8 @@ var uid=readCookie('uid');
 	{
 	que1=ld.question1;
 	alert(que1);
-	$('#q1').append(decodeURIComponent(que1.replace(/\+/g, ' ')));
+	$('#q1').append((que1.replace(/\+/g, ' ')));
+
 	}
 	if(ld.question2)
 	{
