@@ -463,16 +463,16 @@ var uid=readCookie('uid');
   var que1;
   var que2
     $.each( data.items, function( i, ld ) {
-	$('#r_times').append(ld.count);
+	//$('#r_times').append(ld.count);
 	//alert(ld.count);
 	if(ld.submitted_by)
 	{
-	$('#submitted').append(ld.submitted_by);
+	//$('#submitted').append(ld.submitted_by);
 	alert(ld.submitted_by);
 	}
 	if(ld.view)
 	{
-	$('#viewed').append(ld.view);
+	//$('#viewed').append(ld.view);
 	alert(ld.view);
 	}
 	if(ld.question1)
@@ -486,17 +486,17 @@ var uid=readCookie('uid');
 	{
 	que2=ld.question2;
 	alert(que2);
-	$('#q2').append(decodeURIComponent(que2.replace(/\+/g, ' ')));
+	//$('#q2').append(decodeURIComponent(que2.replace(/\+/g, ' ')));
 	}
 	if(ld.question3)
 	{
 	que3=ld.question3;
 	
 	
-	$('#q3').append(decodeURIComponent(que3.replace(/\+/g, ' ')));
+	//$('#q3').append(decodeURIComponent(que3.replace(/\+/g, ' ')));
 	}
-	$('#face_bk').append(ld.facebook);
-	$('#tweet').append(ld.twitter);
+	//$('#face_bk').append(ld.facebook);
+	//$('#tweet').append(ld.twitter);
 	if(ld.id)
 	{
 	que_id=ld.id;
@@ -519,7 +519,7 @@ var uid1=readCookie('uid');
     format: "json"
   })
   .done(function( data ) {
-  //alert('success');
+  alert('success');
   window.location.href='category.htm';
 	
     });
