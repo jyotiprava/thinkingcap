@@ -8,7 +8,7 @@
 <title>My Thinking Cap</title>
 <link href="style.css"rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="src/iscroll.js"></script>
-
+<script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
 
 var myScroll;
@@ -47,6 +47,72 @@ document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 2
 /*
  * * * * * * * */
 
+</script>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<script type="text/javascript" src="cookie.js"></script>
+
+<script type="application/javascript">
+$(function(){
+var que_id='';
+var que1='';
+var que2='';
+var que3='';
+//alert(readCookie('uid'));
+//alert(readCookie('cat_id'));
+var ld=readCookie('cat_id');
+var uid=readCookie('uid');
+  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/test.php?jsoncallback=?&ld="+ld+"&uid="+uid;
+  $.getJSON( flickerAPI, {
+    tags: "mount rainier",
+    tagmode: "any",
+    format: "json"
+  })
+  .done(function( data ) {
+  
+  
+    $.each( data.items, function( i, ld ) {
+	$('#r_times').append(ld.count);
+	if(ld.submitted_by)
+	{
+	$('#submitted').append(ld.submitted_by);
+	alert(ld.submitted_by);
+	}
+	if(ld.view)
+	{
+	$('#viewed').append(ld.view);
+	alert(ld.view);
+	}
+	if(ld.question1)
+	{
+	que1=ld.question1;
+	alert(que1);
+	$('#q1').append(decodeURIComponent(que1.replace(/\+/g, ' ')));
+	}
+	//if(ld.question2)
+//	{
+//	que2=ld.question2;
+//	alert(que2);
+//	$('#q2').append(decodeURIComponent(que2.replace(/\+/g, ' ')));
+//	}
+//	if(ld.question3)
+//	{
+//	que3=ld.question3;
+//	
+//	
+//	$('#q3').append(decodeURIComponent(que3.replace(/\+/g, ' ')));
+//	}
+//	$('#face_bk').append(ld.facebook);
+//	$('#tweet').append(ld.twitter);
+//	if(ld.id)
+//	{
+//	que_id=ld.id;
+//	//alert(que_id);
+//	}
+    });
+  });
+});
 </script>
 
 <style type="text/css" media="all">
@@ -170,60 +236,11 @@ body {
 }
 </style>
 
- 
-
-<style>
 
 
-	.button2 {
-	 padding:5%;
-	 height: 50px;
-	 width:100%;
-	 color: white;
-	 text-decoration: none;
-	 font-size: 14px;
-	 font-family: helvetica, arial;
 
-	 display: block;
-	 text-align: center;
-	 position: relative;
 
-	 /* BACKGROUND GRADIENTS */
 	
-	 background:url(images/buttonbg.jpg) repeat-x;
-
-	 /* BORDER RADIUS */
-	
-
-	 border: 1px solid #368DBE;
-	 border-top: 1px solid #c3d6df;
-
-
-	 /* TEXT SHADOW */
-
-	 text-shadow: 1px 1px 1px black;
-
-	 /* BOX SHADOW */
-	 -moz-box-shadow: 0 1px 3px black;
-	 -webkit-box-shadow: 0 1px 3px black;
-	 box-shadow: 0 1px 3px black;
-	 cursor:pointer;
-	}
-	
-	/* WHILE HOVERED */
-	
-	
-	/* WHILE BEING CLICKED */
-	
-	.button2:hover {
-		 background:url(images/buttonbg1.jpg) repeat-x;
-	}
-	
-	
-	
-</style>
-
-
 </head>
 
 
@@ -235,34 +252,33 @@ body {
 
 <div id="wrapper">
 	<div id="scroller">
-<div id="container" style="padding-top:20px; min-height:500px;">
+			<div id="container" style="padding-top:20px;">
 						
-						<div style="width:70%; height:30px; padding-top:10px; background:url(images/repeat1.png) repeat-x; margin:auto; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:15px; text-align:center; font-weight:bold; ">
-									What will you discover today?
+						<div style="width:80%; height:30px; padding-top:10px;  background:url(images/repeat1.png) repeat-x; margin:auto; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:15px; text-align:center; font-weight:bold;">
+									Select A Category
 						</div>
-
-						<div id="content" style="margin-bottom:50px; font-size:20px; font-family:'Times New Roman', Times, serif; ">
-<div style=" width:98%; padding:1%; float:left; margin-top:2%;  height:auto; padding-bottom:2%; border-radius:3px; -moz-border-radius:3px; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#8AE4EE; ">
-
-<table style="width:40%;" align="center">
-<tr>
-
-
-<td><a href="test.htm"><button name="btn" class="button2"> Lucky Dip </button></a></td>
-<!--<td><a href="task.htm"><button name="btn1" class="button2">Test</button></a></td>-->
-</tr>
-
-
-</table>
-<!--There Are No Lucky Dibs In This Category..
-<a href="enter.htm"><input type="button" name="btn3" value="exit"></a>-->
-
-</div>
-</div>
-</div>
-	</div>
+					<div class="content">
+					<div style="background:url(images/tcrepeat1.png) repeat; width:98%; padding:1%; float:left; margin-top:2%;  height:auto; padding-bottom:2%; border-radius:3px; -moz-border-radius:3px; font-family:Arial, Helvetica, sans-serif;  color:#8AE4EE; ">	
+		<div class="menu" style="margin-top:20px;">
+		 
+		<span id="res"> </span>
+			
+			<!--<a href="all.htm"> &nbsp; &nbsp;</a>
+			
+			<a href="all.htm">Any Category</a>-->
+		</div>
+			<div style="width:100%;height:700px; float:left;">
 			</div>
-			<div id="footer">
+			</div>
+			</div>
+		
+		</div>
+		</div>
+
+			</div>
+		
+		
+		<div id="footer">
 
 						<div class="button">
 
@@ -323,8 +339,10 @@ body {
 
 			</div>
 
+
+
 <!-- jQuery Plugin -->
-<script type="text/javascript" src="jquery.min.js"></script>
+
 
 <!-- Preloader -->
 <script type="text/javascript">
@@ -337,4 +355,3 @@ body {
 </script> 
 </body>
 </html>
-
