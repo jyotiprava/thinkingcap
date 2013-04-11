@@ -49,12 +49,21 @@ document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 2
 
 </script>
 
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<script type="text/javascript" src="cookie.js"></script>
+
 <script type="application/javascript">
 $(function(){
-  
+var que_id='';
+var que1='';
+var que2='';
+var que3='';
 //alert(readCookie('uid'));
-    
-  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/categoryphp.php?jsoncallback=?";
+//alert(readCookie('cat_id'));
+var ld=readCookie('cat_id');
+var uid=readCookie('uid');
+  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/test.php?jsoncallback=?&ld="+ld+"&uid="+uid;
   $.getJSON( flickerAPI, {
     tags: "mount rainier",
     tagmode: "any",
@@ -62,30 +71,49 @@ $(function(){
   })
   .done(function( data ) {
   
-  //alert(data.items.length);
-    $.each( data.items, function( i, item ) {
-    // alert(item.description);
-	 //alert(i);
-	$('#res').append(item.description);
+  
+    $.each( data.items, function( i, ld ) {
+	$('#r_times').append(ld.count);
+	if(ld.submitted_by)
+	{
+	$('#submitted').append(ld.submitted_by);
+	alert(ld.submitted_by);
+	}
+	if(ld.view)
+	{
+	$('#viewed').append(ld.view);
+	alert(ld.view);
+	}
+	if(ld.question1)
+	{
+	que1=ld.question1;
+	alert(que1);
+	$('#q1').append(decodeURIComponent(que1.replace(/\+/g, ' ')));
+	}
+	//if(ld.question2)
+//	{
+//	que2=ld.question2;
+//	alert(que2);
+//	$('#q2').append(decodeURIComponent(que2.replace(/\+/g, ' ')));
+//	}
+//	if(ld.question3)
+//	{
+//	que3=ld.question3;
+//	
+//	
+//	$('#q3').append(decodeURIComponent(que3.replace(/\+/g, ' ')));
+//	}
+//	$('#face_bk').append(ld.facebook);
+//	$('#tweet').append(ld.twitter);
+//	if(ld.id)
+//	{
+//	que_id=ld.id;
+//	//alert(que_id);
+//	}
     });
   });
 });
-//$('.cat_id').click(function(){
-//  var id=this.attr('id');
-//  alert(id);
-//  
-//  });  
 </script>
-
-<script>
-function set_cookie(key)
-{
-//alert(key);
-createCookie('cat_id', key, 7);
-window.open('all.htm');
-}
-</script>
-<script type="text/javascript" src="cookie.js"></script>
 
 <style type="text/css" media="all">
 body,ul,li {
