@@ -5,61 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<title>My Thinking Cap</title>
+<title> My Thinking Cap</title>
 <link href="style.css"rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+// Popup window code
+function newPopup(url) {
+	popupWindow = window.open(
+		url,'popUpWindow','height=300,width=400,left=90,top=90,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+</script>
 <script type="text/javascript" src="src/iscroll.js"></script>
-<script type="text/javascript" src="jquery.min.js"></script>
+
 <script type="text/javascript">
 
 var myScroll;
 function loaded() {
-	myScroll = new iScroll('wrapper');
+	myScroll = new iScroll('wrapper', {
+		useTransform: false,
+		onBeforeScrollStart: function (e) {
+			var target = e.target;
+			while (target.nodeType != 1) target = target.parentNode;
+
+			if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+				e.preventDefault();
+		}
+	});
 }
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+document.addEventListener('DOMContentLoaded', loaded, false);
 
-/* * * * * * * *
- *
- * Use this for high compatibility (iDevice + Android)
- *
- */
-document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
-</script>
-<script type="text/javascript" src="cookie.js"></script>
-
-<script type="application/javascript">
-$(function(){
-var que_id='';
-var que1='';
-var que2='';
-var que3='';
-//alert(readCookie('uid'));
-//alert(readCookie('cat_id'));
-//var ld=readCookie('cat_id');
-//var uid=readCookie('uid');
-  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/test.php?jsoncallback=?";
-  $.getJSON( flickerAPI, {
-    format: "json"
-  })
-  .done(function( data ) {
-  
-  
-    $.each( data.items, function( i, ld ) {
-	$('#r_times').append(ld.count);
-	if(ld.submitted_by)
-	{
-	$('#submitted').append(ld.submitted_by);
-	alert(ld.submitted_by);
-	}
-	if(ld.question1)
-	{
-	que1=ld.question1;
-	alert(que1);
-	$('#q1').append(decodeURIComponent(que1.replace(/\+/g, ' ')));
-	}
-    });
-  });
-});
 </script>
 
 <style type="text/css" media="all">
@@ -101,7 +76,7 @@ body {
 	width:100%;
 	height:65px;
 	position:absolute; z-index:2;
-	bottom:0; 
+	bottom:0;
 	padding:0;
 	border-top:1px solid #444;
 	border-top:1px solid #0066CC;
@@ -142,7 +117,8 @@ body {
 
 #wrapper {
 	position:absolute; z-index:1;
-	top:45px; bottom:48px;			
+	top:65px; bottom:65px;			
+			/* it seems that recent webkit is less picky and works anyway. */
 
 	width:100%;
 	
@@ -183,17 +159,391 @@ body {
 }
 </style>
 
+<style>
+input[type=submit] {
+     width: auto;
+     padding: 0.25em 1em;
+     line-height: 1.5em;
+     background: -webkit-gradient(linear, left top, left bottom, from(#a00), to(#600));
+     border: 2px solid #c00;
+     text-shadow: 0 0 2px #300;
+     font-weight: bold;
+     -webkit-box-shadow: 1px 1px 3px #000;
+     margin-right: 0.5em;
+   }
+</style>
+
+<!-- preloader -->
+<!-- Stylesheet -->
+	  <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen, print"/>
+
+<style>
+#preloader {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#fff; /* change if the mask should have another color then white */
+    z-index:999999; /* makes sure it stays on top */
+}
+
+#status {
+    width:200px;
+    height:200px;
+    position:absolute;
+    left:50%; /* centers the loading animation horizontally one the screen */
+    top:50%; /* centers the loading animation vertically one the screen */
+    background-image:url(img/status.gif); /* path to your loading animation */
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:-100px 0 0 -100px; /* is width and height divided by two */
+}
 
 
+	.button2 {
+	 padding:5%;
+	 height: 55px;
+	 width:50%;
+	 color: white;
+	 text-decoration: none;
+	 font-size: 14px;
+	 font-family: helvetica, arial;
 
+	 display: block;
+	 text-align: center;
+	 position: relative;
 
+	 /* BACKGROUND GRADIENTS */
 	
+	 background:url(images/buttonbg.jpg) repeat-x;
+
+	 /* BORDER RADIUS */
+	
+	 border: 1px solid #368DBE;
+	 border-top: 1px solid #c3d6df;
+
+
+	 /* TEXT SHADOW */
+
+	 text-shadow: 1px 1px 1px black;
+
+	 /* BOX SHADOW */
+	 -moz-box-shadow: 0 1px 3px black;
+	 -webkit-box-shadow: 0 1px 3px black;
+	 box-shadow: 0 1px 3px black;
+	 cursor:pointer;
+	}
+	
+	/* WHILE HOVERED */
+	
+	
+	/* WHILE BEING CLICKED */
+	
+	.button2:hover {
+		 background:url(images/buttonbg1.jpg) repeat-x;
+	}
+	
+</style>
+
+
+<!-- popup window-->
+<script>
+var overlayElement = document.createElement("div");
+overlayElement.className = 'modalOverlay';
+document.body.appendChild(overlayElement);
+</script>
+<style>
+.modalOverlay
+{
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  margin:0;
+  padding:0;
+  background:#000;
+ opacity:0;
+  -webkit-transition: opacity 0.3s ease-in;
+  z-index:101;
+}
+.modalWindow
+{
+  position:fixed;
+  top:150px;
+  margin:0;
+  border:2px solid #fff;
+  width:180px;
+  /*height:30px;*/
+  text-align:center;
+  word-spacing:2px;
+  line-height:15px;
+  font-weight:bold;
+  font-size:13px;
+  color:#8AE4EE;
+  padding:10px;
+  opacity:0;
+  z-index:102;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7c9bc0), color-stop(2%, #416086), color-stop(100%, #293e56));
+  -webkit-border-radius:8px;
+  -webkit-box-shadow:-1px 2px 12px rgba(0, 0, 0, 0.91);
+  -webkit-transition: opacity 0.3s ease-in;
+}
+</style>
+<script>
+var modalWindowElement = document.createElement("div");
+modalWindowElement.className = 'modalWindow';
+modalWindowElement.innerHTML = msg;
+modalWindowElement.style.left = (window.innerWidth - 200) / 2 + "px";
+document.body.appendChild(modalWindowElement);
+
+setTimeout(function() {
+  modalWindowElement.style.opacity = 1;
+  overlayElement.style.opacity = 0.4;
+  overlayElement.addEventListener("click", hidePopUpMessage, false);
+}, 300);
+</script>
+
+<script type="text/javascript">
+var overlayElement = null;
+var modalWindowElement = null;
+window.addEventListener('load', initApp, false);
+
+function initApp() {
+  setTimeout(function() { window.scrollTo(0, 1); }, 10);
+  document.getElementById("popUpBtn").addEventListener("click", function() {
+    showPopUpMessage("<p>Most Lucky Dips contain carefully worded questions. Put one question at a time into your internet search engine (eg: Google) and hit enter! There you will find your answers. Use common sense and discernment. If the Lucky Dip does not contain any questions, simply follow the instructions it will provide. For further information visit www.MyThinkingCap.net Enjoy expanding your mind! <br><span style='color:#CCCC00;'>'Click outside this popup to continue'</span></p>");
+  }, false);
+}
+//show the modal overlay and popup window
+function showPopUpMessage(msg) {
+  overlayElement = document.createElement("div");
+  overlayElement.className = 'modalOverlay';
+  modalWindowElement = document.createElement("div");
+  modalWindowElement.className = 'modalWindow';
+  modalWindowElement.innerHTML = msg;
+  modalWindowElement.style.left = (window.innerWidth - 200) / 2 + "px";
+  document.body.appendChild(overlayElement);
+  document.body.appendChild(modalWindowElement);
+  setTimeout(function() {
+    modalWindowElement.style.opacity = 1;
+    overlayElement.style.opacity = 0.4;
+    overlayElement.addEventListener("click", hidePopUpMessage, false);
+  }, 300);
+}
+//hide the modal overlay and popup window
+function hidePopUpMessage() {
+  modalWindowElement.style.opacity = 0;
+  overlayElement.style.opacity = 0;
+  overlayElement.removeEventListener("click", hidePopUpMessage, false);
+  setTimeout(function() {
+    document.body.removeChild(overlayElement);
+    document.body.removeChild(modalWindowElement);
+  }, 400);
+}
+</script>
+<!--popup window ends-->
+
+
+<!-- popup window-->
+<script>
+var overlayElement = document.createElement("div");
+overlayElement.className = 'modalOverlay1';
+document.body.appendChild(overlayElement);
+</script>
+<style>
+.modalOverlay1
+{
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  margin:0;
+  padding:0;
+  background:#000;
+ opacity:0;
+  -webkit-transition: opacity 0.3s ease-in;
+  z-index:101;
+}
+.modalWindow1
+{
+  position:fixed;
+  top:150px;
+  margin:0;
+  border:2px solid #fff;
+  width:180px;
+  /*height:30px;*/
+  text-align:center;
+  word-spacing:2px;
+  line-height:15px;
+  font-weight:bold;
+  font-size:13px;
+  color:#8AE4EE;
+  padding:10px;
+  opacity:0;
+  z-index:102;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7c9bc0), color-stop(2%, #416086), color-stop(100%, #293e56));
+  -webkit-border-radius:8px;
+  -webkit-box-shadow:-1px 2px 12px rgba(0, 0, 0, 0.91);
+  -webkit-transition: opacity 0.3s ease-in;
+}
+</style>
+<script>
+var modalWindowElement = document.createElement("div");
+modalWindowElement.className = 'modalWindow';
+modalWindowElement.innerHTML = msg;
+modalWindowElement.style.left = (window.innerWidth - 200) / 2 + "px";
+document.body.appendChild(modalWindowElement);
+
+setTimeout(function() {
+  modalWindowElement.style.opacity = 1;
+  overlayElement.style.opacity = 0.4;
+  overlayElement.addEventListener("click", hidePopUpMessage, false);
+}, 300);
+</script>
+
+<script type="text/javascript">
+var overlayElement = null;
+var modalWindowElement = null;
+window.addEventListener('load', initApp, false);
+
+function initApp() {
+  setTimeout(function() { window.scrollTo(0, 1); }, 10);
+  document.getElementById("popUpBtn1").addEventListener("click", function() {
+    showPopUpMessage("<p>If you are going to research this Lucky Dip, please take note of the questions or instructions BEFORE clicking Put My Thinking Cap On. When you click that, the App will record that you have researched 1 Lucky Dip, and you will be returned to the Category page.<br><span style='color:#CCCC00;'>'Click outside this popup to continue'</span></p>");
+  }, false);
+}
+//show the modal overlay and popup window
+function showPopUpMessage(msg) {
+  overlayElement = document.createElement("div");
+  overlayElement.className = 'modalOverlay1';
+  modalWindowElement = document.createElement("div");
+  modalWindowElement.className = 'modalWindow1';
+  modalWindowElement.innerHTML = msg;
+  modalWindowElement.style.left = (window.innerWidth - 200) / 2 + "px";
+  document.body.appendChild(overlayElement);
+  document.body.appendChild(modalWindowElement);
+  setTimeout(function() {
+    modalWindowElement.style.opacity = 1;
+    overlayElement.style.opacity = 0.4;
+    overlayElement.addEventListener("click", hidePopUpMessage, false);
+  }, 300);
+}
+//hide the modal overlay and popup window
+function hidePopUpMessage() {
+  modalWindowElement.style.opacity = 0;
+  overlayElement.style.opacity = 0;
+  overlayElement.removeEventListener("click", hidePopUpMessage, false);
+  setTimeout(function() {
+    document.body.removeChild(overlayElement);
+    document.body.removeChild(modalWindowElement);
+  }, 400);
+}
+</script>
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<script type="text/javascript" src="cookie.js"></script>
+
+<script type="application/javascript">
+$(function(){
+var que_id='';
+var que1='';
+var que2='';
+var que3='';
+//alert(readCookie('uid'));
+//alert(readCookie('cat_id'));
+var ld=readCookie('cat_id');
+var uid=readCookie('uid');
+  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/test.php?jsoncallback=?&ld="+ld+"&uid="+uid;
+  $.getJSON( flickerAPI, {
+    tags: "mount rainier",
+    tagmode: "any",
+    format: "json"
+  })
+  .done(function( data ) {
+  
+  
+    $.each( data.items, function( i, ld ) {
+	$('#r_times').append(ld.count);
+	if(ld.submitted_by)
+	{
+	$('#submitted').append(ld.submitted_by);
+	alert(ld.submitted_by);
+	}
+	if(ld.view)
+	{
+	$('#viewed').append(ld.view);
+	alert(ld.view);
+	}
+	if(ld.question1)
+	{
+	que1=ld.question1;
+	alert(que1);
+	$('#q1').append(decodeURIComponent(que1.replace(/\+/g, ' ')));
+	}
+	if(ld.question2)
+	{
+	que2=ld.question2;
+	alert(que2);
+	$('#q2').append(decodeURIComponent(que2.replace(/\+/g, ' ')));
+	}
+	if(ld.question3)
+	{
+	que3=ld.question3;
+	
+	
+	$('#q3').append(decodeURIComponent(que3.replace(/\+/g, ' ')));
+	}
+	//$('#face_bk').append(ld.facebook);
+	//$('#tweet').append(ld.twitter);
+	if(ld.id)
+	{
+	que_id=ld.id;
+	alert(que_id);
+	}
+    });
+  });
+
+//$("#btn").click(function() {
+//
+//createCookie('que_id',que_id,365);
+//
+////alert(que_id);
+//var question=readCookie('que_id');
+//var uid1=readCookie('uid');
+//  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/thinking.php?jsoncallback=?&ld="+question+"&uid="+uid1;
+//  $.getJSON( flickerAPI, {
+//    tags: "mount rainier",
+//    tagmode: "any",
+//    format: "json"
+//  })
+//  .done(function( data ) {
+//  //alert('success');
+//  window.location.href='category.htm';
+//	
+//    });
+// 
+//
+//
+//});
+});
+</script>
 </head>
 
 
-<body>
-
-<div id="header" style="background:#666666; text-align:left;">
+<body >
+<div id="preloader">
+	<div id="status">&nbsp;</div>
+</div>
+     <div id="fb-root"></div>
+        <div id="loader" style="display:none">
+            
+        </div>
+        
+        <div id="debug"></div>
+		<div id="header" style="background:#666666; text-align:left;">
 <a href="enter.htm"><img src="images/logo1.jpg" style="width:100%; height:auto; float:left; " /></a>
 </div>
 
@@ -201,29 +551,92 @@ body {
 	<div id="scroller">
 			<div id="container" style="padding-top:20px;">
 						
-						<div style="width:80%; height:30px; padding-top:10px;  background:url(images/repeat1.png) repeat-x; margin:auto; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:15px; text-align:center; font-weight:bold;">
-									Select A Category
-						</div>
-					<div class="content">
-					<div style="background:url(images/tcrepeat1.png) repeat; width:98%; padding:1%; float:left; margin-top:2%;  height:auto; padding-bottom:2%; border-radius:3px; -moz-border-radius:3px; font-family:Arial, Helvetica, sans-serif;  color:#8AE4EE; ">	
-		<div class="menu" style="margin-top:20px;">
-		 
-		<span id="r_times"> </span>
-		<span id="submitted"> </span>
-		<span id="q1"> </span>
-		</div>
-			<div style="width:100%;height:700px; float:left;">
-			</div>
-			</div>
-			</div>
-		
-		</div>
-		</div>
+						
+							
+						
+						
+						
+						<div id="content" style="margin-bottom:50px; font-size:20px; font-family:'Times New Roman', Times, serif; ">
 
+
+
+<div style="width:85%; height:50px;  margin:auto; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold; margin-top:2%; text-align:center; ">
+<input type="button" id="postit" style="display:block" value="Post On My Wall" onclick="setStatus(); return false;" /> 
+									<div style="50%; float:left;" id="face_bk">
+									</div>
+									<div style="50%; float:right;" id="tweet">
+                                   </div>		
+						
+						
+						</div> <div id="user-info"></div>
+
+<div style="background:url(images/tcrepeat1.png) repeat; width:98%; padding:1%; float:left;  height:auto; padding-bottom:2%; border-radius:3px; -moz-border-radius:3px; ">
+<div style="width:100%;font-size:16px;float:left; padding-bottom:10px; font-weight:bold; border-bottom:1px solid #CCCC00;  ">
+This Lucky Dip has been researched<br/><span id="r_times" style="font-size:14px; line-height:1.0; color:#CCCC00; font-weight:bold;"></span>
+<span style="font-size:14px; line-height:1.0; color:#CCCC00; font-weight:bold;" >
+ 			times.
+</span>
+
+</div>
+<div style="width:100%;color:#FFFFFF; float:left; font-size:16px; margin-top:5px; padding-bottom:10px; border-bottom:1px solid #CCCC00;">
+<span style="font-weight:bold;">Submitted by:</span>  <br/>
+<span style="font-size:14px; line-height:1.0; color:#CCCC00; font-weight:bold;" id="submitted">
+
+</span>
+<br />
+
+</div>
+
+<div style="width:100%;color:#CCCC00; float:left; font-size:16px; font-weight:bold; margin-top:5px;">
+This Lucky Dip has been viewed <span id="viewed">  </span> times.<br/>
+<span id="popUpBtn" style="color:#8AE4EE;">"Click Here and learn what to do with this Lucky Dip"</span><br/>
+
+</div>
+</div>
+
+
+<div style="width:70%; height:30px; padding-top:10px; background:url(images/repeat1.png) repeat-x; float:left; margin-left:15%; margin-top:3%; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:15px; text-align:center; font-weight:bold; ">
+									Your Lucky Dip
+						</div>
+
+
+
+<div style=" height:auto; width:98%; float:left; padding:1%; margin-top:3%; font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold;  line-height:1.5; background:url(images/tcrepeat1.png) repeat;   border-radius:3px; -moz-border-radius:3px; ">
+																																					<p id="q1" style="font-size:16px; font-family:Arial, Helvetica, sans-serif; color:#8AE4EE;"></p>
+																																												<p id="q2" style="font-size:16px; font-family:Arial, Helvetica, sans-serif;  color:#8AE4EE;"></p>
+																																																																																		
+<p id="q3" style="font-size:16px; font-family:Arial, Helvetica, sans-serif;  color:#8AE4EE;"></p>
+			<!--<input type="text" id="q3" name="question3"	style="font-size:16px; font-family:Arial, Helvetica, sans-serif;  color:#8AE4EE; border:none;  width:100px; background:none;" value="<?php echo $question;?>"	 />		-->																																			
+			<br />
+</div>
+
+<table style="width:100%;" height="330" align="center"  >
+<tr>
+<td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:14px;  font-weight:bold;color:#B6F02F;">Want different questions?</td>
+</tr>
+<tr>
+<td align="center" ><a href="mythinking.htm"><input type="button" name="btn1" id="btn1" value="Dip Again" class="button2" onclick="return disable_button();"></a><input type="button" name="btn3" id="btn3" value="Dip Again" class="button2" style="display:none;"></td>
+</tr>
+<tr>
+<td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:14px;  font-weight:bold;color:#B6F02F;"><span id="popUpBtn1" style="color:#8AE4EE;">"How do I record my research? Click Here"</span> </td>
+</tr>
+<tr>
+<td align="center" ><button name="btn" class="button2" id="btn" style="font-size:12px;">  Put My<br/>Thinking Cap On </button></td>
+</tr>
+<tr>
+<td align="center"><a href="category.htm"><button  name="btn2"  class="button2">Change<br/> Category</button></a></td>
+</tr>
+
+
+</table>
+</div>
+</div>
+						
+		
+</div>
+						</div>
 			</div>
-		
-		
-		<div id="footer">
+			<div id="footer">
 
 						<div class="button">
 
@@ -284,10 +697,7 @@ body {
 
 			</div>
 
-
-
-<!-- jQuery Plugin -->
-
+			<!-- jQuery Plugin -->
 
 <!-- Preloader -->
 <script type="text/javascript">
@@ -295,6 +705,7 @@ body {
 		$(window).load(function() { // makes sure the whole site is loaded
 			$("#status").fadeOut(); // will first fade out the loading animation
 			$("#preloader").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
+			
 		})
 	//]]>
 </script> 
