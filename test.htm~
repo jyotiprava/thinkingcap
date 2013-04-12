@@ -80,7 +80,7 @@ $(function(){
 <script>
 function set_cookie(key)
 {
-alert(key);
+//alert(key);
 createCookie('cat_id', key, 7);
 window.location.href='test1.htm';
 }

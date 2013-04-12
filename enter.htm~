@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,9 +6,37 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>My Thinking Cap</title>
-<link href="style.css"rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="src/iscroll.js"></script>
 <script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+
+<script type="application/javascript">
+$(function(){
+
+var username=readCookie('uid');
+if(username==null || username=="")
+    {
+	var new_time= Number (new Date());
+	createCookie('uid',new_time,365);
+	}
+var uid=readCookie('uid');
+  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/indexphp.php?jsoncallback=?&uid="+uid;
+  $.getJSON( flickerAPI, {
+    tags: "mount rainier",
+    tagmode: "any",
+    format: "json"
+  })
+  .done(function( data ) {
+  
+    $.each( data.items, function( i, item ) {
+	 $('#atmpt_no').append(item.description);
+    });
+  });
+});
+
+</script>
+
 <script type="text/javascript">
 
 var myScroll;
@@ -48,44 +76,6 @@ document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 2
  * * * * * * * */
 
 </script>
-
-<script type="application/javascript">
-$(function(){
-  
-//alert(readCookie('uid'));
-    
-  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/categoryphp.php?jsoncallback=?";
-  $.getJSON( flickerAPI, {
-    tags: "mount rainier",
-    tagmode: "any",
-    format: "json"
-  })
-  .done(function( data ) {
-  
-  //alert(data.items.length);
-    $.each( data.items, function( i, item ) {
-    // alert(item.description);
-	 //alert(i);
-	$('#res').append(item.description);
-    });
-  });
-});
-//$('.cat_id').click(function(){
-//  var id=this.attr('id');
-//  alert(id);
-//  
-//  });  
-</script>
-
-<script>
-function set_cookie(key)
-{
-alert(key);
-createCookie('cat_id', key, 7);
-window.location.href='test1.htm';
-}
-</script>
-<script type="text/javascript" src="cookie.js"></script>
 
 <style type="text/css" media="all">
 body,ul,li {
@@ -210,47 +200,78 @@ body {
 
 
 
+<!-- preloader -->
+<!-- Stylesheet -->
+	  <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen, print"/>
 
+<style>
+#preloader {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#fff; /* change if the mask should have another color then white */
+    z-index:999999; /* makes sure it stays on top */
+}
 
-	
+#status {
+    width:200px;
+    height:200px;
+    position:absolute;
+    left:50%; /* centers the loading animation horizontally one the screen */
+    top:50%; /* centers the loading animation vertically one the screen */
+    background-image:url(img/status.gif); /* path to your loading animation */
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:-100px 0 0 -100px; /* is width and height divided by two */
+}
+.button3{
+border:1px solid #26759E;-webkit-box-shadow: #FEFFFF 0px 1px 3px inset;-moz-box-shadow: #FEFFFF 0px 1px 3px inset; box-shadow: #FEFFFF 0px 1px 3px inset; -webkit-border-radius: 7px; -moz-border-radius: 7px;border-radius: 7px;font-size:14px;font-family:lucida sans unicode, lucida grande, sans-serif; padding: 11px 5px 11px 5px; text-shadow: 0px 1px 0 rgba(0,0,0,0.5); text-align: center; color: #FFFFFF;background-color: #60FA1E;
+ background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60FA1E), color-stop(100%, #174F17));
+ background-image: -webkit-linear-gradient(top, #60FA1E, #174F17);
+ background-image: -moz-linear-gradient(top, #60FA1E, #174F17);
+ background-image: -ms-linear-gradient(top, #60FA1E, #174F17);
+ background-image: -o-linear-gradient(top, #60FA1E, #174F17);
+ background-image: linear-gradient(top, #60FA1E, #174F17);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#60FA1E, endColorstr=#174F17);
+}
+</style>
+<!--End of preloader -->
+
 </head>
 
 
 <body>
-
+<div id="preloader">
+	<div id="status">&nbsp;</div>
+</div>
 <div id="header" style="background:#666666; text-align:left;">
-<a href="enter.htm"><img src="images/logo1.jpg" style="width:100%; height:auto; float:left; " /></a>
+<img src="images/logo1.jpg" style="width:100%; height:auto; float:left; " />
 </div>
 
 <div id="wrapper">
 	<div id="scroller">
-			<div id="container" style="padding-top:20px;">
-						
-						<div style="width:80%; height:30px; padding-top:10px;  background:url(images/repeat1.png) repeat-x; margin:auto; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:15px; text-align:center; font-weight:bold;">
-									Select A Category
-						</div>
-					<div class="content">
-					<div style="background:url(images/tcrepeat1.png) repeat; width:98%; padding:1%; float:left; margin-top:2%;  height:auto; padding-bottom:2%; border-radius:3px; -moz-border-radius:3px; font-family:Arial, Helvetica, sans-serif;  color:#8AE4EE; ">	
-		<div class="menu" style="margin-top:20px;">
-		 
-		<span id="res"> </span>
-			
-			<!--<a href="all.htm"> &nbsp; &nbsp;</a>
-			
-			<a href="all.htm">Any Category</a>-->
-		</div>
-			<div style="width:100%;height:700px; float:left;">
-			</div>
-			</div>
-			</div>
-		
-		</div>
-		</div>
+			<div id="container" style="height:100%;">
+					<div style="width:100%; float:left; text-align:center; margin-top:8%;">
+									<A href="html5.htm"><img src="images/enter.png" border="0" width="100" height="85" style="margin-top:10%;"/>&nbsp; </A>		
 
+		
+						</div>
+					
+					<div style="width:100%; float:left; text-align:center;">
+<div style="background:url(images/tcrepeat1.png) repeat; width:98%; padding:1%; float:left; margin-top:2%;  height:auto; padding-bottom:2%; border-radius:3px; -moz-border-radius:3px; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#8AE4EE;">
+<p style="color:#8AE4EE;" id="atmpt_no"></p>
+
+</div>
+
+					
+				</div>		
+						
 			</div>
-		
-		
-		<div id="footer">
+			</div>
+			</div>
+			
+			<div id="footer">
 
 						<div class="button">
 
