@@ -496,8 +496,8 @@ var uid=readCookie('uid');
 	
 	$('#q3').append(decodeURIComponent(que3.replace(/\+/g, ' ')));
 	}
-	$('#face_bk').append(ld.facebook);
-	$('#tweet').append(ld.twitter);
+	//$('#face_bk').append(ld.facebook);
+	//$('#tweet').append(ld.twitter);
 	if(ld.id)
 	{
 	que_id=ld.id;
