@@ -9,18 +9,25 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="src/iscroll.js"></script>
 <script type="text/javascript" src="jquery.min.js"></script>
-<script type="text/javascript" src="cookie.js"></script>
-
 <script type="application/javascript">
 $(function(){
 
-var username=readCookie('uid');
-if(username==null || username=="")
+//var username=readCookie('uid');
+if(typeof(Storage)!=="undefined")
+  {
+if(!localStorage.uname)
     {
 	var new_time= Number (new Date());
-	createCookie('uid',new_time,365);
+	//createCookie('uid',new_time,365);
+	localStorage.uname=new_time;
 	}
-var uid=readCookie('uid');
+var uid=localStorage.uname;
+}
+else
+		{
+		alert("Sorry, your browser does not support web storage...");
+		
+		}
   var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/indexphp.php?jsoncallback=?&uid="+uid;
   $.getJSON( flickerAPI, {
     tags: "mount rainier",
@@ -253,7 +260,7 @@ border:1px solid #26759E;-webkit-box-shadow: #FEFFFF 0px 1px 3px inset;-moz-box-
 	<div id="scroller">
 			<div id="container" style="height:100%;">
 					<div style="width:100%; float:left; text-align:center; margin-top:8%;">
-									<a href="html5.htm"><img src="images/enter.png" border="0" width="100" height="85" style="margin-top:10%;"/>&nbsp; </a>		
+									<a href="category.htm"><img src="images/enter.png" border="0" width="100" height="85" style="margin-top:10%;"/>&nbsp; </a>		
 
 		
 						</div>

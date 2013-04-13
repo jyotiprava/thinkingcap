@@ -443,9 +443,6 @@ function hidePopUpMessage() {
 }
 </script>
 <script type="text/javascript" src="jquery.min.js"></script>
-
-<script type="text/javascript" src="cookie.js"></script>
-
 <script type="application/javascript">
 $(function(){
 var que_id='';
@@ -454,8 +451,8 @@ var que2='';
 var que3='';
 //alert(readCookie('uid'));
 //alert(readCookie('cat_id'));
-var ld=readCookie('cat_id');
-var uid=readCookie('uid');
+var ld=localStorage.cat_id;
+var uid=localStorage.uname;
   var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/mythinking.php?jsoncallback=?&ld="+ld+"&uid="+uid;
   $.getJSON( flickerAPI, {
     tags: "mount rainier",
@@ -508,11 +505,19 @@ var uid=readCookie('uid');
 
 $("#btn").click(function() {
 
-createCookie('que_id',que_id,365);
+if(typeof(Storage)!=="undefined")
+  {
+	localStorage.que_id=que_id;
+}
+else
+		{
+		alert("Sorry, your browser does not support web storage...");
+		
+		}
 
 //alert(que_id);
-var question=readCookie('que_id');
-var uid1=readCookie('uid');
+var question=localStorage.que_id;
+var uid1=localStorage.uname;
   var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/thinking.php?jsoncallback=?&ld="+question+"&uid="+uid1;
   $.getJSON( flickerAPI, {
     tags: "mount rainier",

@@ -81,12 +81,21 @@ $(function(){
 function set_cookie(key)
 {
 //alert(key);
-createCookie('cat_id', key, 7);
-window.location.href='test1.htm';
+//createCookie('cat_id', key, 7);
+if(typeof(Storage)!=="undefined")
+  {
+	localStorage.cat_id=key;
+}
+else
+		{
+		alert("Sorry, your browser does not support web storage...");
+		
+		}
+
+//alert(localStorage.cat_id);
+window.location.href='all.htm';
 }
 </script>
-<script type="text/javascript" src="cookie.js"></script>
-
 <style type="text/css" media="all">
 body,ul,li {
 	padding:0;
