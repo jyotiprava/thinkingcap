@@ -453,7 +453,7 @@ var que3='';
 //alert(readCookie('cat_id'));
 var ld=localStorage.cat_id;
 var uid=localStorage.uname;
-  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/mythinking.php?jsoncallback=?&ld="+ld+"&uid="+uid;
+  var flickerAPI = "http://50.56.237.229/scroll/examples/simple/mythinking.php?jsoncallback=?&ld="+ld+"&uid="+uid;
   $.getJSON( flickerAPI, {
     tags: "mount rainier",
     tagmode: "any",
@@ -518,7 +518,7 @@ else
 //alert(que_id);
 var question=localStorage.que_id;
 var uid1=localStorage.uname;
-  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/thinking.php?jsoncallback=?&ld="+question+"&uid="+uid1;
+  var flickerAPI = "http://50.56.237.229/scroll/examples/simple/thinking.php?jsoncallback=?&ld="+question+"&uid="+uid1;
   $.getJSON( flickerAPI, {
     tags: "mount rainier",
     tagmode: "any",
