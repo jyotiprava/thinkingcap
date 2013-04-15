@@ -20,20 +20,39 @@ function newPopup(url) {
 
 var myScroll;
 function loaded() {
-	myScroll = new iScroll('wrapper', {
-		useTransform: false,
-		onBeforeScrollStart: function (e) {
-			var target = e.target;
-			while (target.nodeType != 1) target = target.parentNode;
-
-			if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
-				e.preventDefault();
-		}
-	});
+	myScroll = new iScroll('wrapper');
 }
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-document.addEventListener('DOMContentLoaded', loaded, false);
+
+/* * * * * * * *
+ *
+ * Use this for high compatibility (iDevice + Android)
+ *
+ */
+document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+/*
+ * * * * * * * */
+
+
+/* * * * * * * *
+ *
+ * Use this for iDevice only
+ *
+ */
+//document.addEventListener('DOMContentLoaded', loaded, false);
+/*
+ * * * * * * * */
+
+
+/* * * * * * * *
+ *
+ * Use this if nothing else works
+ *
+ */
+//window.addEventListener('load', setTimeout(function () { loaded(); }, 200), false);
+/*
+ * * * * * * * */
 
 </script>
 
@@ -735,8 +754,8 @@ This Lucky Dip has been researched<br/><span id="r_times" style="font-size:14px;
 </div>
 <div style="width:100%;color:#FFFFFF; float:left; font-size:16px; margin-top:5px; padding-bottom:10px; border-bottom:1px solid #CCCC00;">
 <span style="font-weight:bold;">Submitted by:</span>  <br/>
-<span style="font-size:14px; line-height:1.0; color:#CCCC00; font-weight:bold;" id="submitted">
-
+<span style="font-size:14px; line-height:1.0; color:#CCCC00; font-weight:bold; " id="submitted">
+&nbsp;
 </span>
 <br />
 
@@ -790,6 +809,7 @@ This Lucky Dip has been viewed <span id="viewed">  </span> times.<br/>
 		
 </div>
 						</div>
+						<div style="width:100%; height:300px; float:left;">
 			</div>
 			<div id="footer">
 
