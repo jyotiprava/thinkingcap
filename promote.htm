@@ -260,7 +260,7 @@ $(function(){
 		 var email = $("input#email").val();
         var cat = $("#select_cat").val();
  
-    var flickerAPI = "http://50.56.237.229/scroll/examples/simple/submit1.php?jsoncallback=?&q1="+q1+"&q2="+q2+"&q3="+q3+"name="+name+"&age="+age+"state="+state+"&country="+country+"&email="+email+"&cat="+cat;
+    var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/submit1.php?jsoncallback=?&q1="+q1+"&q2="+q2+"&q3="+q3+"name="+name+"&age="+age+"state="+state+"&country="+country+"&email="+email+"&cat="+cat;
 
 $('#user_name').append('Dear '+name+',');
 $('#content').hide();
@@ -282,7 +282,7 @@ $('#content2').show();
 	
 	
 	
-  var flickerAPI = "http://50.56.237.229/scroll/examples/simple/select_cat.php?jsoncallback=?";
+  var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/select_cat.php?jsoncallback=?";
   $.getJSON( flickerAPI, {
     tags: "mount rainier",
     tagmode: "any",
