@@ -7,10 +7,10 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <name>My Thinking Cap Demo Version</name>
+    <name> My Thinking Cap Demo Version </name>
 
     <description>
-       Demo Version for My Thinking Cap
+       first demo version
     </description>
 
     <author href="https://build.phonegap.com" email="support@phonegap.com">
