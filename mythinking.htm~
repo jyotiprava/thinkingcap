@@ -24,6 +24,7 @@ function loaded() {
 }
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
 /* * * * * * * *
  *
  * Use this for high compatibility (iDevice + Android)
@@ -804,22 +805,12 @@ This Lucky Dip has been viewed <span id="viewed">  </span> times.<br/>
 </table>
 </div>
 </div>
-<<<<<<< HEAD
-			<div style="width:100%; height:200px; float:left;">
-			</div>			
-=======
-	<div style="width:100%; height:300px; float:left;">
-			</div>						
->>>>>>> c592ad3a861c1755da1bdafee7898ee022381b32
-		
-</div>
-
-						</div>
-<<<<<<< HEAD
 						
-=======
-					
->>>>>>> c592ad3a861c1755da1bdafee7898ee022381b32
+	<div style="width:100%; height:300px; float:left;">	
+</div>
+						</div>
+						
+			</div>
 			<div id="footer">
 
 						<div class="button">
