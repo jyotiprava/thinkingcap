@@ -692,7 +692,7 @@ xmlhttp.send();
             
         </script>-->
         <!--<script>
-            function disable_button()
+           function disable_button()
             {
             //alert("dfvs");
             document.getElementById('btn1').style.display="none";
@@ -789,7 +789,7 @@ This Lucky Dip has been viewed <span id="viewed">  </span> times.<br/>
 <td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:14px;  font-weight:bold;color:#B6F02F;">Want different questions?</td>
 </tr>
 <tr>
-<td align="center" ><a href="mythinking.htm"><input type="button" name="btn1" id="btn1" value="Dip Again" class="button2" onclick="return disable_button();"></a><input type="button" name="btn3" id="btn3" value="Dip Again" class="button2" style="display:none;"></td>
+<td align="center" ><a href="mythinking.htm"><input type="button" name="btn1" id="btn1" value="Dip Again" class="button2" onclick="return "></a><!--<input type="button" name="btn3" id="btn3" value="Dip Again" class="button2" style="display:none;">--></td>
 </tr>
 <tr>
 <td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:14px;  font-weight:bold;color:#B6F02F;"><span id="popUpBtn1" style="color:#8AE4EE;">"How do I record my research? Click Here"</span> </td>
