@@ -10,14 +10,11 @@
 <script type="text/javascript" src="src/iscroll.js"></script>
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
-
 var myScroll;
 function loaded() {
 	myScroll = new iScroll('wrapper');
 }
-
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-
 /* * * * * * * *
  *
  * Use this for high compatibility (iDevice + Android)
@@ -26,8 +23,6 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
 /*
  * * * * * * * */
-
-
 /* * * * * * * *
  *
  * Use this for iDevice only
@@ -36,8 +31,6 @@ document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 2
 //document.addEventListener('DOMContentLoaded', loaded, false);
 /*
  * * * * * * * */
-
-
 /* * * * * * * *
  *
  * Use this if nothing else works
@@ -46,14 +39,10 @@ document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 2
 //window.addEventListener('load', setTimeout(function () { loaded(); }, 200), false);
 /*
  * * * * * * * */
-
 </script>
-
 <script type="application/javascript">
 $(function(){
-  
-//alert(readCookie('uid'));
-    
+  //alert(readCookie('uid'));
   var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/categoryphp.php?jsoncallback=?";
   $.getJSON( flickerAPI, {
     tags: "mount rainier",
@@ -61,7 +50,6 @@ $(function(){
     format: "json"
   })
   .done(function( data ) {
-  
   //alert(data.items.length);
     $.each( data.items, function( i, item ) {
     // alert(item.description);
@@ -76,7 +64,6 @@ $(function(){
 //  
 //  });  
 </script>
-
 <script>
 function set_cookie(key)
 {
@@ -89,9 +76,7 @@ if(typeof(Storage)!=="undefined")
 else
 		{
 		alert("Sorry, your browser does not support web storage...");
-		
 		}
-
 //alert(localStorage.cat_id);
 window.location.href='all.htm';
 }
@@ -102,7 +87,6 @@ body,ul,li {
 	margin:0;
 	border:0;
 }
-
 body {
 	font-size:12px;
 	-webkit-user-select:none;
@@ -111,7 +95,6 @@ body {
 /*	padding-bottom:44px;	/*	This prevents the scroller to lock if the user swipes down outside of the screen.
 							 	NOT needed if in home screen mode and on Android. */
 }
-
 #header {
 	width:100%;
 	height:auto;
@@ -123,14 +106,12 @@ body {
 	font-size:20px;
 	text-align:center;
 }
-
 #header a {
 	color:#f3f3f3;
 	text-decoration:none;
 	font-weight:bold;
 	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
 }
-
 #footer {
 	width:100%;
 	height:65px;
@@ -140,25 +121,20 @@ body {
 	border-top:1px solid #444;
 	border-top:1px solid #0066CC;
 }
-
 #footer li {
 	display:block;
 	float:left;
 }
-
 #footer li {
 	width:50%;
 	text-align:center;
 }
-
 #footer a.remove {
 	border-right:1px solid #333;
 }
-
 #footer a.add {
 	border-left:1px solid #6a6a6a;
 }
-
 #footer a {
 	display:block;
 	text-decoration:none;
@@ -167,22 +143,17 @@ body {
 	line-height:24px;
 	text-shadow:0 -1px 0 #000;
 }
-
 #footer span {
 	display:block;
 	font-size:30px;
 	font-weight:bold;
 }
-
 #wrapper {
 	position:absolute; z-index:1;
-	top:45px; bottom:48px;			
-
+	top:50px; bottom:48px;			
 	width:100%;
-	
 	overflow:hidden;
 }
-
 #scroller {
 /*	-webkit-touch-callout:none;*/
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
@@ -227,8 +198,8 @@ body {
 
 <body>
 
-<div id="header" style="background:#666666; text-align:left;">
-<a href="enter.htm"><img src="images/logo1.jpg" style="width:100%; height:auto; float:left; " /></a>
+<div id="header" style="background:#666666; text-align:left; z-index:1000;">
+<a href="enter.htm"><img src="images/logo1.jpg" style="width:100%; height:auto; max-height:45px; float:left; " /></a>
 </div>
 
 <div id="wrapper">

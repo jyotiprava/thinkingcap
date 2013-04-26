@@ -11,7 +11,6 @@
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="application/javascript">
 $(function(){
-
 //var username=readCookie('uid');
 if(typeof(Storage)!=="undefined")
   {
@@ -26,7 +25,6 @@ var uid=localStorage.uname;
 else
 		{
 		alert("Sorry, your browser does not support web storage...");
-		
 		}
   var flickerAPI = "http://50.56.237.229/scrolldemo/examples/simple/indexphp.php?jsoncallback=?&uid="+uid;
   $.getJSON( flickerAPI, {
@@ -41,18 +39,13 @@ else
     });
   });
 });
-
 </script>
-
 <script type="text/javascript">
-
 var myScroll;
 function loaded() {
 	myScroll = new iScroll('wrapper');
 }
-
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-
 /* * * * * * * *
  *
  * Use this for high compatibility (iDevice + Android)
@@ -61,8 +54,6 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
 /*
  * * * * * * * */
-
-
 /* * * * * * * *
  *
  * Use this for iDevice only
@@ -71,8 +62,6 @@ document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 2
 //document.addEventListener('DOMContentLoaded', loaded, false);
 /*
  * * * * * * * */
-
-
 /* * * * * * * *
  *
  * Use this if nothing else works
@@ -81,16 +70,13 @@ document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 2
 //window.addEventListener('load', setTimeout(function () { loaded(); }, 200), false);
 /*
  * * * * * * * */
-
 </script>
-
 <style type="text/css" media="all">
 body,ul,li {
 	padding:0;
 	margin:0;
 	border:0;
 }
-
 body {
 	font-size:12px;
 	-webkit-user-select:none;
@@ -99,7 +85,6 @@ body {
 /*	padding-bottom:44px;	/*	This prevents the scroller to lock if the user swipes down outside of the screen.
 							 	NOT needed if in home screen mode and on Android. */
 }
-
 #header {
 	width:100%;
 	height:auto;
@@ -111,14 +96,12 @@ body {
 	font-size:20px;
 	text-align:center;
 }
-
 #header a {
 	color:#f3f3f3;
 	text-decoration:none;
 	font-weight:bold;
 	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
 }
-
 #footer {
 	width:100%;
 	height:65px;
@@ -128,25 +111,20 @@ body {
 	border-top:1px solid #444;
 	border-top:1px solid #0066CC;
 }
-
 #footer li {
 	display:block;
 	float:left;
 }
-
 #footer li {
 	width:50%;
 	text-align:center;
 }
-
 #footer a.remove {
 	border-right:1px solid #333;
 }
-
 #footer a.add {
 	border-left:1px solid #6a6a6a;
 }
-
 #footer a {
 	display:block;
 	text-decoration:none;
@@ -155,33 +133,25 @@ body {
 	line-height:24px;
 	text-shadow:0 -1px 0 #000;
 }
-
 #footer span {
 	display:block;
 	font-size:30px;
 	font-weight:bold;
 }
-
 #wrapper {
 	position:absolute; z-index:1;
 	top:45px; bottom:48px;			
-
 	width:100%;
-	
 	overflow:hidden;
 }
-
 #scroller {
 /*	-webkit-touch-callout:none;*/
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
-
 	float:left;
 	width:100%;
 	padding:0;
-
 /*	-webkit-box-shadow:0 0 8px #555;	/* Don't use box shadows, they slow down drastically CSS animations */
 }
-
 #scroller ul {
 	list-style:none;
 	padding:0;
@@ -189,7 +159,6 @@ body {
 	width:100%;
 	text-align:left;
 }
-
 #scroller li {
 	padding:0 10px;
 	height:40px;
@@ -199,18 +168,13 @@ body {
 	background-color:#fafafa;
 	font-size:14px;
 }
-
 #scroller li > a {
 	display:block;
 }
 </style>
-
-
-
 <!-- preloader -->
 <!-- Stylesheet -->
 	  <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen, print"/>
-
 <style>
 #preloader {
     position:absolute;
@@ -221,7 +185,6 @@ body {
     background-color:#fff; /* change if the mask should have another color then white */
     z-index:999999; /* makes sure it stays on top */
 }
-
 #status {
     width:200px;
     height:200px;
@@ -244,106 +207,55 @@ border:1px solid #26759E;-webkit-box-shadow: #FEFFFF 0px 1px 3px inset;-moz-box-
 }
 </style>
 <!--End of preloader -->
-
 </head>
-
-
 <body>
 <div id="preloader">
-	<div id="status">&nbsp;</div>
+			<div id="status">&nbsp;</div>
 </div>
 <div id="header" style="background:#666666; text-align:left;">
-<img src="images/logo1.jpg" style="width:100%; height:auto; float:left; " />
+			<img src="images/logo1.jpg" style="width:100%; height:auto; float:left; max-height:50px; " />
 </div>
-
 <div id="wrapper">
 	<div id="scroller">
 			<div id="container" style="height:100%;">
 					<div style="width:100%; float:left; text-align:center; margin-top:8%;">
-									<a href="category.htm"><img src="images/enter.png" border="0" width="100" height="85" style="margin-top:10%;"/>&nbsp; </a>		
-
-		
+									<a href="category.htm"><img src="images/enter.png" border="0" width="100" height="85" style="margin-top:10%;"/>&nbsp; </a>
 						</div>
-					
 					<div style="width:100%; float:left; text-align:center;">
 <div style="background:url(images/tcrepeat1.png) repeat; width:98%; padding:1%; float:left; margin-top:2%;  height:auto; padding-bottom:2%; border-radius:3px; -moz-border-radius:3px; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#8AE4EE;">
 <p style="color:#8AE4EE;" id="atmpt_no"></p>
-
 </div>
-
-					
 				</div>		
-						
 			</div>
 			</div>
 			</div>
-			
 			<div id="footer">
-
 						<div class="button">
-
 									<div class="bottomtext">
-
 												<A href="promote.htm"><img src="images/submit.png" border="0" /></A>
-
-												
-
 												<A href="promote.htm">Submit</A>
-
 									</div>
-
 						</div>
-
 						<div class="button">
-
 									<div class="bottomtext">
-
 												<a href="business.htm"><img src="images/businees.png" border="0" /></a>
-
-												
-
 												<a href="business.htm">Business</a>
-
 									</div>
-
 						</div>
-
 						<div class="button">
-
 									<div class="bottomtext">
-
 												<A href="about.htm"><img src="images/about.png" border="0" /></A>
-
-												
-
 												<A href="about.htm">About</A>
-
 									</div>
-
 						</div>
-
 						<div class="button" style="width:21%; display:none;">
-
 									<div class="bottomtext">
-
-												
-
-												
 												<span style="font-family:Arial, Helvetica, sans-serif; font-size:14px; margin-top:18px; color:#FFFFFF;"></span>
 												<a href="#">Total Lds</a>
-												
-
 									</div>
-
 						</div>
-
 			</div>
-
-
-
 <!-- jQuery Plugin -->
-
-
 <!-- Preloader -->
 <script type="text/javascript">
 	//<![CDATA[
